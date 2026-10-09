@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "zip-demo": "cd demo-app && rm -f ../public/downloads/taskflow-api.zip && zip -rq ../public/downloads/taskflow-api.zip taskflow-api -x \"*/node_modules/*\" \"*.DS_Store\"",
+    "prebuild": "npm run zip-demo"
   },
   "dependencies": {
     "next": "16.4.0",

@@ -1,0 +1,16 @@
+{
+  "name": "taskflow-api",
+  "version": "1.0.0",
+  "description": "A tiny task-management REST API used for the Claude Code hands-on labs. Contains deliberate bugs.",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test",
+    "test:watch": "node --test --watch"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT"
+}

@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Claude Code 101 — Developer Portal
 
-## Getting Started
+A Next.js reference portal for the 60-minute session
+**“Claude Code: From Natural Language to Production-Ready Software”**.
 
-First, run the development server:
+## What's inside
+
+| Route | Content |
+| --- | --- |
+| `/` | Overview, 60-minute agenda timeline, module grid with progress tracking |
+| `/modules/[slug]` | 10 session modules + 1 bonus: objectives, concepts, commands, copy-paste prompts, diagrams, takeaways, quiz |
+| `/labs` | 7 hands-on labs on the TaskFlow practice repo (downloadable) |
+| `/prompts` | 40 filterable prompts by stage of the dev loop |
+| `/cheatsheet` | CLI flags, slash commands, shortcuts, MCP, config files |
+| `/reference` | FAQ, glossary, official resources |
+
+Also includes ⌘K / `/` search, a light/dark theme toggle, and per-browser progress (localStorage).
+
+## Run
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # also re-zips demo-app/ into public/downloads/
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Editing content
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+All content is data in `src/content/` and is rendered by `src/components/Blocks.tsx`:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `modules-1.ts`, `modules-2.ts`, `modules-3.ts`: modules made of typed blocks (`p`, `code`, `prompt`, `callout`, `table`, `flow`, `compare`, `steps`, `cards`)
+- `labs.ts`, `prompts.ts`, `reference.ts`: labs, prompt library, cheat sheet / glossary / FAQ
 
-## Learn More
+## Practice repo
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`demo-app/taskflow-api` is a zero-dependency Node 20+ API with **deliberate bugs**:
+2 failing tests (pagination, overdue filter) plus auth weaknesses (forgeable tokens, no expiry,
+unsalted hashing, user enumeration, IDOR in `completeTask`). Don't fix it in this repo; it's the exercise.
+`npm run zip-demo` packages it for download.
